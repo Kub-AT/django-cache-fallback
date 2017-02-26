@@ -1,0 +1,51 @@
+==============================================================================
+Django Cache Fallback.
+==============================================================================
+:Info: This is the README file for Django Cache Fallback.
+:Author: Jakub S
+
+.. index: README
+.. image:: https://travis-ci.org/Kub-AT/django-cache-fallback.svg?branch=master
+   :target: https://travis-ci.org/Kub-AT/django-cache-fallback
+
+PURPOSE
+-------
+Allows you to set fallback cache backend. 
+The data is not shared between cache backends.
+Example: Memcached is not available, backend switch to fallback. Site may slow down (cache have to be set)
+but will not rise an error (watch your logs)
+
+INSTALLATION
+------------
+pip install django-cache-fallback
+
+INSTALLED_APPS = (
+    ...
+    'cache_fallback',
+)
+
+USAGE
+-----
+Usage example PyLibMCCache + LocMemCache
+
+.. code:: python
+
+    CACHES = {
+        'default': {
+            'BACKEND': 'cache_fallback.FallbackCache',
+        },
+
+        'main_cache': {
+            'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
+            'LOCATION': '/tmp/memcached.sock',
+            'TIMEOUT': 500,
+        },
+        'fallback_cache': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'unique'
+        }
+
+    }
+
+NOTES
+-----

@@ -1,0 +1,4 @@
+django
+pytest
+coverage
+pytest-cov
