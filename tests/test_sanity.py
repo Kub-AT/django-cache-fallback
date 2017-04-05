@@ -10,6 +10,7 @@ def test_true():
     """Test if True is truthy."""
     assert True
 
+
 def test_import():
     """Test imports."""
     cache_fallback

@@ -11,7 +11,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='django-cache-fallback',
-    version='0.1.0',
+    version='0.2.0',
     description='Django Cache Fallback',
     keywords='django-cache-fallback, django cache, multiple cache, fallback cache',
     author='Jakub S',
@@ -30,7 +30,8 @@ setup(
                 'Programming Language :: Python :: 3',
                 'Programming Language :: Python :: 3.3',
                 'Programming Language :: Python :: 3.4',
-                'Programming Language :: Python :: 3.5'
+                'Programming Language :: Python :: 3.5',
+                'Programming Language :: Python :: 3.6'
     ],
     packages=find_packages(exclude=('tests',)),
     include_package_data=True,

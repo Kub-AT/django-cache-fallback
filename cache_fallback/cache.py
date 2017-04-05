@@ -9,7 +9,6 @@ logging.basicConfig()
 logger = logging.getLogger(__name__)
 
 
-
 def get_cache(backend, **kwargs):
     """
     Compatibilty wrapper for getting Django's cache backend instance
@@ -36,20 +35,27 @@ class FallbackCache(BaseCache):
     _cache = None
     _cache_fallback = None
 
-    def __init__(self, host, *args, **kwargs):
+    def __init__(self, params=None, *args, **kwargs):
         BaseCache.__init__(self, *args, **kwargs)
         self._cache = get_cache('main_cache')
         self._cache_fallback = get_cache('fallback_cache')
 
     def _call_with_fallback(self, method, *args, **kwargs):
         try:
-            return getattr(self._cache, method)(*args, **kwargs)
+            return self._call_main_cache(args, kwargs, method)
         except Exception as e:
+            logger.warning('Switch to fallback cache')
             logger.exception(e)
-            return getattr(self._cache_fallback, method)(*args, **kwargs)
+            return self._call_fallback_cache(args, kwargs, method)
+
+    def _call_main_cache(self, args, kwargs, method):
+        return getattr(self._cache, method)(*args, **kwargs)
+
+    def _call_fallback_cache(self, args, kwargs, method):
+        return getattr(self._cache_fallback, method)(*args, **kwargs)
 
     def add(self, key, value, timeout=None, version=None):
-        return self._call_with_fallback('add', key, value, timeout=None, version=None)
+        return self._call_with_fallback('add', key, value, timeout=timeout, version=version)
 
     def get(self, key, default=None, version=None):
         return self._call_with_fallback('get', key, default=default, version=version)

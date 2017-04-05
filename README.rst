@@ -19,10 +19,12 @@ INSTALLATION
 ------------
 pip install django-cache-fallback
 
-INSTALLED_APPS = (
-    ...
-    'cache_fallback',
-)
+.. code:: python
+
+   INSTALLED_APPS = (
+       ...
+       'cache_fallback',
+   )
 
 USAGE
 -----
@@ -36,7 +38,7 @@ Usage example PyLibMCCache + LocMemCache
         },
 
         'main_cache': {
-            'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
+            'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
             'LOCATION': '/tmp/memcached.sock',
             'TIMEOUT': 500,
         },
@@ -46,6 +48,3 @@ Usage example PyLibMCCache + LocMemCache
         }
 
     }
-
-NOTES
------

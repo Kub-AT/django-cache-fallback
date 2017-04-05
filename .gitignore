@@ -36,3 +36,5 @@ o.*
 
 # GitHub token file
 .pypt/gh-token
+
+.idea
