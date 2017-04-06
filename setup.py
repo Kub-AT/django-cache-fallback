@@ -15,7 +15,7 @@ setup(
     description='Django Cache Fallback',
     keywords='django-cache-fallback, django cache, multiple cache, fallback cache',
     author='Jakub S',
-    author_email='@',
+    author_email='Kub-AT@users.noreply.github.com',
     url='https://github.com/Kub-AT/django-cache-fallback',
     license='3-clause BSD',
     long_description=io.open('./README.rst', 'r', encoding='utf-8').read(),
