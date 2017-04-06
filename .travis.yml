@@ -1,20 +1,36 @@
-language: python
 sudo: false
-python:
- - "2.7"
- - "3.3"
- - "3.4"
- - "3.5"
- - "3.6"
+language: python
+
+matrix:
+  include:
+    - env: TOXENV=django18-py27
+      python: 2.7
+    - env: TOXENV=django18-py33
+      python: 3.3
+    - env: TOXENV=django18-py34
+      python: 3.4
+    - env: TOXENV=django18-py35
+      python: 3.5
+    - env: TOXENV=django19-py27
+      python: 2.7
+    - env: TOXENV=django19-py34
+      python: 3.4
+    - env: TOXENV=django19-py35
+      python: 3.5
+    - env: TOXENV=django110-py27
+      python: 2.7
+    - env: TOXENV=django110-py34
+      python: 3.4
+    - env: TOXENV=django110-py35
+      python: 3.5
+    - env: TOXENV=django111-py36
+      python: 3.6
 
 install:
- - "pip install -r requirements.txt"
- - "pip install ."
+  - pip install coveralls tox
 
 script:
-  - "py.test --cov cache_fallback --cov-report term-missing tests/"
+  - tox
 
-notifications:
-  email:
-    on_success: change
-    on_failure: always
+after_success:
+  - coveralls
