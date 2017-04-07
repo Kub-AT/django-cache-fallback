@@ -10,21 +10,24 @@ Django Cache Fallback.
 
 PURPOSE
 -------
-Allows you to set fallback cache backend. 
+Allows you to set fallback cache backend (multiple cache backend).
 The data is not shared between cache backends.
 Example: Memcached is not available, backend switch to fallback. Site may slow down (cache have to be set)
 but will not rise an error (watch your logs)
 
 INSTALLATION
 ------------
-pip install django-cache-fallback
+
+.. code:: bash
+
+    pip install django-cache-fallback
 
 .. code:: python
 
-   INSTALLED_APPS = (
+    INSTALLED_APPS = (
        ...
        'cache_fallback',
-   )
+    )
 
 USAGE
 -----
