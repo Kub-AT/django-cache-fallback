@@ -11,7 +11,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='django-cache-fallback',
-    version='0.2.0',
+    version='0.2.1',
     description='Django Cache Fallback',
     keywords='django-cache-fallback, django cache, multiple cache, fallback cache',
     author='Jakub S',
@@ -42,3 +42,4 @@ setup(
     include_package_data=True,
     install_requires=requirements,
 )
+r
