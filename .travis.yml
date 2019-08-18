@@ -3,28 +3,6 @@ language: python
 
 matrix:
   include:
-    - env: TOXENV=django18-py27
-      python: 2.7
-    - env: TOXENV=django18-py34
-      python: 3.4
-    - env: TOXENV=django18-py35
-      python: 3.5
-    - env: TOXENV=django18-py36
-      python: 3.6
-    - env: TOXENV=django19-py27
-      python: 2.7
-    - env: TOXENV=django19-py34
-      python: 3.4
-    - env: TOXENV=django19-py35
-      python: 3.5
-    - env: TOXENV=django19-py36
-      python: 3.6
-    - env: TOXENV=django110-py27
-      python: 2.7
-    - env: TOXENV=django110-py34
-      python: 3.4
-    - env: TOXENV=django110-py35
-      python: 3.5
     - env: TOXENV=django111-py27
       python: 2.7
     - env: TOXENV=django111-py34
@@ -33,6 +11,28 @@ matrix:
       python: 3.5
     - env: TOXENV=django111-py36
       python: 3.6
+    - env: TOXENV=django111-py37
+      python: 3.7
+    - env: TOXENV=django20-py34
+      python: 3.4
+    - env: TOXENV=django20-py35
+      python: 3.5
+    - env: TOXENV=django20-py36
+      python: 3.6
+    - env: TOXENV=django20-py37
+      python: 3.7
+    - env: TOXENV=django21-py35
+      python: 3.5
+    - env: TOXENV=django21-py36
+      python: 3.6
+    - env: TOXENV=django21-py37
+      python: 3.7
+    - env: TOXENV=django22-py35
+      python: 3.5
+    - env: TOXENV=django22-py36
+      python: 3.6
+    - env: TOXENV=django22-py37
+      python: 3.7
 
 install:
   - pip install coveralls tox
