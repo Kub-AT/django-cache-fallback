@@ -2,7 +2,7 @@
 Django Cache Fallback.
 ==============================================================================
 :Info: This is the README file for Django Cache Fallback.
-:Author: Jakub S
+:Author: Jakub Stawowy
 
 .. index: README
 .. image:: https://travis-ci.org/Kub-AT/django-cache-fallback.svg?branch=master
