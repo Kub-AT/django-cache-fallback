@@ -3,6 +3,6 @@ from __future__ import unicode_literals
 
 from .cache import FallbackCache
 
-__title__ = 'Django Cache Fallback'
+__title__ = "Django Cache Fallback"
 
-__all__ = (FallbackCache, )
+__all__ = (FallbackCache,)
