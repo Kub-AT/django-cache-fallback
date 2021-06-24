@@ -33,7 +33,7 @@ class PyTest(TestCommand):
                 "default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "test.db"},
             },
             CACHES={
-                "default": {"BACKEND": "cache_fallback.FallbackCache",},
+                "default": {"BACKEND": "cache_fallback.FallbackCache"},
                 "fallback_cache": {
                     "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
                     "LOCATION": "unique",
@@ -61,7 +61,7 @@ class PyTest(TestCommand):
 
 setup(
     name="django-cache-fallback",
-    version="0.2.2",
+    version="0.3.0",
     description="Django Cache Fallback",
     keywords="django-cache-fallback, django cache, multiple cache, fallback cache",
     author="Jakub Stawowy",
@@ -80,12 +80,15 @@ setup(
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
         "Framework :: Django",
+        "Framework :: Django :: 3.2",
+        "Framework :: Django :: 3.2",
+        "Framework :: Django :: 3.1",
         "Framework :: Django :: 2.2",
-        "Framework :: Django :: 2.1",
-        "Framework :: Django :: 2.0",
         "Framework :: Django :: 1.11",
         "Framework :: Django :: 1.10",
         "Framework :: Django :: 1.9",
@@ -97,7 +100,7 @@ setup(
     install_requires=requirements,
     tests_require=[
         "flake8",
-        "pytest==4.6.5",  # with python <3.4 support
+        "pytest",
         "coverage",
         "pytest-cov",
         "python-memcached",
