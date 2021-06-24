@@ -3,18 +3,14 @@ language: python
 
 matrix:
   include:
-    - env: TOXENV=django111-py27
-      python: 2.7
-    - env: TOXENV=django111-py34
-      python: 3.4
-    - env: TOXENV=django111-py35
-      python: 3.5
     - env: TOXENV=django111-py36
       python: 3.6
     - env: TOXENV=django111-py37
       python: 3.7
-    - env: TOXENV=django22-py35
-      python: 3.5
+    - env: TOXENV=django111-py38
+      python: 3.8
+    - env: TOXENV=django111-py39
+      python: 3.9
     - env: TOXENV=django22-py36
       python: 3.6
     - env: TOXENV=django22-py37
@@ -23,8 +19,6 @@ matrix:
       python: 3.8
     - env: TOXENV=django22-py39
       python: 3.9
-    - env: TOXENV=django30-py35
-      python: 3.5
     - env: TOXENV=django30-py36
       python: 3.6
     - env: TOXENV=django30-py37
@@ -33,8 +27,6 @@ matrix:
       python: 3.8
     - env: TOXENV=django30-py39
       python: 3.9
-    - env: TOXENV=django32-py35
-      python: 3.5
     - env: TOXENV=django32-py36
       python: 3.6
     - env: TOXENV=django32-py37
