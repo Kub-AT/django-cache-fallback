@@ -5,8 +5,8 @@ Django Cache Fallback.
 :Author: Jakub Stawowy
 
 .. index: README
-.. image:: https://travis-ci.org/Kub-AT/django-cache-fallback.svg?branch=master
-   :target: https://travis-ci.org/Kub-AT/django-cache-fallback
+.. image:: https://api.travis-ci.com/Kub-AT/django-cache-fallback.svg?branch=master
+   :target: https://travis-ci.com/Kub-AT/django-cache-fallback
 
 PURPOSE
 -------
