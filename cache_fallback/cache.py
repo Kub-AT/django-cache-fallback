@@ -17,7 +17,7 @@ def get_cache(backend, **kwargs):
         cache_instance = dj_cache.get_cache(backend, **kwargs)
     elif django.VERSION >= (3, 2):
         cache_instance = dj_cache.caches.create_connection(backend)
-    else:  # Django 1.7 do 3.1
+    else:  # Django 1.7 to 3.1
         cache_instance = dj_cache._create_cache(backend, **kwargs)
 
     # Some caches -- python-memcached in particular -- need to do a cleanup at the
