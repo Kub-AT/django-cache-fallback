@@ -1,1 +1,1 @@
-# just run: python setup.py test
+# just run: tox
