@@ -14,18 +14,18 @@ def get_cache(backend, **kwargs):
     from django.core import cache as dj_cache
 
     if django.VERSION <= (1, 6):
-        cache = dj_cache.get_cache(backend, **kwargs)
+        cache_instance = dj_cache.get_cache(backend, **kwargs)
     elif django.VERSION >= (3, 2):
-        cache = dj_cache.caches.create_connection(backend)
+        cache_instance = dj_cache.caches.create_connection(backend)
     else:  # Django 1.7 to 3.1
-        cache = dj_cache._create_cache(backend, **kwargs)
+        cache_instance = dj_cache._create_cache(backend, **kwargs)
 
     # Some caches -- python-memcached in particular -- need to do a cleanup at the
     # end of a request cycle. If not implemented in a particular backend
     # cache.close is a no-op. Not available in Django 1.5
-    if hasattr(cache, "close"):
-        signals.request_finished.connect(cache.close)
-    return cache
+    if hasattr(cache_instance, "close"):
+        signals.request_finished.connect(cache_instance.close)
+    return cache_instance
 
 
 class FallbackCache(BaseCache):
@@ -38,17 +38,13 @@ class FallbackCache(BaseCache):
         self._cache_fallback = get_cache("fallback_cache")
 
     def add(self, key, value, timeout=None, version=None):
-        return self._call_with_fallback(
-            "add", key, value, timeout=timeout, version=version
-        )
+        return self._call_with_fallback("add", key, value, timeout=timeout, version=version)
 
     def get(self, key, default=None, version=None):
         return self._call_with_fallback("get", key, default=default, version=version)
 
     def set(self, key, value, timeout=None, version=None, client=None):
-        return self._call_with_fallback(
-            "set", key, value, timeout=timeout, version=version
-        )
+        return self._call_with_fallback("set", key, value, timeout=timeout, version=version)
 
     def delete(self, key, version=None):
         return self._call_with_fallback("delete", key, version=version)
@@ -56,16 +52,22 @@ class FallbackCache(BaseCache):
     def clear(self):
         return self._call_with_fallback("clear")
 
+    def incr(self, key, delta=1, version=None):
+        return self._call_with_fallback("incr", key, delta=delta, version=version)
+
+    def decr(self, key, delta=1, version=None):
+        return self._call_with_fallback("decr", key, delta=delta, version=version)
+
     def _call_with_fallback(self, method, *args, **kwargs):
         try:
-            return self._call_main_cache(args, kwargs, method)
+            return self._call_main_cache(method, *args, **kwargs)
         except Exception as e:
             logger.warning("Switch to fallback cache")
             logger.exception(e)
-            return self._call_fallback_cache(args, kwargs, method)
+            return self._call_fallback_cache(method, *args, **kwargs)
 
-    def _call_main_cache(self, args, kwargs, method):
+    def _call_main_cache(self, method, *args, **kwargs):
         return getattr(self._cache, method)(*args, **kwargs)
 
-    def _call_fallback_cache(self, args, kwargs, method):
+    def _call_fallback_cache(self, method, *args, **kwargs):
         return getattr(self._cache_fallback, method)(*args, **kwargs)
